@@ -1,20 +1,24 @@
 import {
-  Injectable,
   ConflictException,
+  Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { User, UserDocument } from './schemas/user.schema';
+import { PaginationResponseDto } from '../../common/dto/pagination-response.dto';
+import { PaginationDto } from '../../common/dto/pagination.dto';
+import { PaginationService } from '../../common/services/pagination.service';
 import { CreateUserDto } from '../auth/dto/create-user.dto';
-import { UserStatsDto } from './dto/user-stats.dto';
 import { Role } from '../auth/enums/roles.enum';
 import { GetUserDto } from './dto/get-user.dto';
+import { UserStatsDto } from './dto/user-stats.dto';
+import { User, UserDocument } from './schemas/user.schema';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+    private readonly paginationService: PaginationService,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<UserDocument> {
@@ -121,13 +125,15 @@ export class UsersService {
     return { available: !existingUser };
   }
 
-  async getAllUserStats(): Promise<UserStatsDto[]> {
-    const users = await this.userModel
-      .find({}, { password: 0 })
-      .sort({ createdAt: -1 })
-      .exec();
+  async getAllUserStats(
+    query: PaginationDto & Record<string, any>,
+  ): Promise<PaginationResponseDto<UserStatsDto>> {
+    const result = await this.paginationService.paginate(this.userModel, query);
 
-    return users.map((user) => this.mapToUserStats(user));
+    return {
+      ...result,
+      data: result.data.map((user) => this.mapToUserStats(user)),
+    };
   }
 
   async getUserStats(username: string): Promise<UserStatsDto> {

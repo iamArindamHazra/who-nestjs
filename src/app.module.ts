@@ -8,6 +8,7 @@ import { MessagesModule } from './modules/messages/messages.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { AppService } from './app.service';
       }),
       inject: [ConfigService],
     }),
+    CommonModule,
     UsersModule,
     MessagesModule,
     AuthModule,

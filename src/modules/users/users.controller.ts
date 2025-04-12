@@ -16,7 +16,9 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { PaginationDto } from '../../common/dto/pagination.dto';
 import { UsersDocs } from '../../docs/users.docs';
+import { PaginationDocs } from '../../docs/pagination.docs';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { Role } from '../auth/enums/roles.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -35,12 +37,37 @@ export class UsersController {
   @Get('all')
   @Version('1')
   @Roles(Role.SUPER_USER)
-  @ApiOperation(UsersDocs.getAllUsers.operation)
-  @ApiResponse(UsersDocs.getAllUsers.responses[200])
+  @ApiOperation({
+    summary: 'Get all users with pagination and filtering (Super User only)',
+    description: PaginationDocs.filtering.description,
+  })
+  @ApiQuery(PaginationDocs.params.pagination)
+  @ApiQuery(PaginationDocs.params.limit)
+  @ApiQuery(PaginationDocs.params.sort)
+  @ApiQuery(PaginationDocs.params.or)
+  @ApiQuery({
+    name: 'username',
+    required: false,
+    type: String,
+    description: 'Filter by exact username match',
+  })
+  @ApiQuery({
+    name: 'username:similar',
+    required: false,
+    type: String,
+    description: 'Filter by username similar to the value',
+  })
+  @ApiQuery({
+    name: 'messageCount:gt',
+    required: false,
+    type: Number,
+    description: 'Filter by message count greater than value',
+  })
+  @ApiResponse(PaginationDocs.responses[200])
   @ApiResponse(UsersDocs.getAllUsers.responses[401])
   @ApiResponse(UsersDocs.getAllUsers.responses[403])
-  async getAllUsers(): Promise<UserStatsDto[]> {
-    return this.usersService.getAllUserStats();
+  async getAllUsers(@Query() query: PaginationDto & Record<string, any>) {
+    return this.usersService.getAllUserStats(query);
   }
 
   @Get('check')
@@ -53,21 +80,6 @@ export class UsersController {
     @Query('username') username: string,
   ): Promise<{ available: boolean }> {
     return this.usersService.checkUsernameAvailability(username);
-  }
-
-  @Get('stats')
-  @Version('1')
-  @Roles(Role.SUPER_USER)
-  @ApiOperation(UsersDocs.getAllUserStats.operation)
-  @ApiResponse({
-    ...UsersDocs.getAllUserStats.responses[200],
-    type: UserStatsDto,
-    isArray: true,
-  })
-  @ApiResponse(UsersDocs.getAllUserStats.responses[401])
-  @ApiResponse(UsersDocs.getAllUserStats.responses[403])
-  async getAllUserStats(): Promise<UserStatsDto[]> {
-    return this.usersService.getAllUserStats();
   }
 
   @Get('info/:username')
