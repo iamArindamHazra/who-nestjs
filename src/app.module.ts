@@ -5,6 +5,7 @@ import { ThrottlerModule, ThrottlerModuleOptions } from '@nestjs/throttler';
 import configuration from './config/configuration';
 import { UsersModule } from './modules/users/users.module';
 import { MessagesModule } from './modules/messages/messages.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -37,6 +38,7 @@ import { AppService } from './app.service';
     }),
     UsersModule,
     MessagesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -44,4 +44,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Restricted headers
   - Maximum age configuration (1 hour)
 
-[1.0.0]: https://github.com/username/repo/releases/tag/v1.0.0
+## [0.0.2] - 2024-03-21
+
+### Added
+
+- Authentication and Authorization:
+  - JWT-based authentication system
+  - Local passport strategy for username/password auth
+  - Role-based access control (RBAC) with User and Super User roles
+  - Protected routes with JWT guard
+  - User promotion and demotion capabilities for super users
+- Enhanced User Management:
+  - Email support in user profiles
+  - User statistics and activity tracking
+  - Online status tracking
+  - Case-insensitive username and email indexing
+  - Extended user profile with roles and activity timestamps
+- Improved Message System:
+  - Message ownership verification
+  - Enhanced privacy controls for message access
+  - Restricted message viewing to owners and super users
+- API Documentation:
+  - Enhanced Swagger documentation with authentication details
+  - Improved API operation descriptions
+  - Added security requirements to API endpoints
+- Monitoring and Logging:
+  - Request logging middleware for debugging
+  - Detailed request information logging (URL, method, headers)
+- Database Improvements:
+  - Added indexes for case-insensitive searches
+  - Optimized database queries
+  - Added unique constraints for username and email
+
+### Security
+
+- Enhanced message access control with ownership verification
+- Added role-based authorization for sensitive operations
+- Implemented JWT-based secure authentication
+- Added case-sensitive email and username validation
+
+### Changed
+
+- Updated user schema with new fields (email, roles, lastActive, isOnline)
+- Modified message access to require authentication
+- Enhanced error handling with specific error messages
+- Updated API endpoints to include authentication requirements

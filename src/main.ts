@@ -26,6 +26,15 @@ async function bootstrap() {
   app.use(compression());
   app.use(cookieParser());
 
+  // Add request logging middleware
+  app.use((req, res, next) => {
+    console.log('Incoming Request:');
+    console.log('URL:', req.url);
+    console.log('Method:', req.method);
+    console.log('Headers:', req.headers);
+    next();
+  });
+
   // Configure CORS with specific origins
   const corsOrigins = configService.get('CORS_ORIGIN', '').split(',');
   app.enableCors({
@@ -53,12 +62,26 @@ async function bootstrap() {
   if (process.env.NODE_ENV !== 'production') {
     const config = new DocumentBuilder()
       .setTitle('Anonymous Message API')
-      .setDescription('API for sending and receiving anonymous messages')
+      .setDescription(
+        'API for sending and receiving anonymous messages\n\n' +
+          '## Authentication\n\n' +
+          'To use protected endpoints, you need to:\n' +
+          '1. Login using the `/api/v1/auth/login` endpoint with your credentials\n' +
+          '2. From the response, copy ONLY the `access_token` value (without quotes)\n' +
+          '3. Click the "Authorize" button at the top\n' +
+          '4. In the "Value" field, paste ONLY the token value\n' +
+          '5. Click "Authorize"\n\n',
+      )
       .setVersion('1.0')
       .addBearerAuth()
-      .addTag('v1')
+      .addTag('Version 1 (v1)')
       .build();
+
     const document = SwaggerModule.createDocument(app, config);
+
+    // Add security requirements
+    document.security = [{ bearer: [] }];
+
     SwaggerModule.setup('docs', app, document);
   }
 

@@ -11,4 +11,5 @@ export default () => ({
     ttl: parseInt(process.env.THROTTLE_TTL, 10) || 60,
     limit: parseInt(process.env.THROTTLE_LIMIT, 10) || 10,
   },
+  JWT_SECRET: process.env.JWT_SECRET || 'your-super-secret-jwt-key',
 });

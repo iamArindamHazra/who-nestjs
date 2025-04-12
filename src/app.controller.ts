@@ -9,7 +9,10 @@ export class AppController {
 
   @Get('/')
   @Version('1')
-  @ApiOperation({ summary: 'Get hello message' })
+  @ApiOperation({
+    summary: 'Get hello message (Public)',
+    description: 'Returns a greeting message to verify the API is running',
+  })
   @ApiResponse({
     status: 200,
     description: 'Returns a greeting message',
