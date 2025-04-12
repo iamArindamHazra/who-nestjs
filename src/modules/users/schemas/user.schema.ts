@@ -8,13 +8,13 @@ export type UserDocument = User & Document;
   timestamps: true,
 })
 export class User {
-  @Prop({ unique: true, sparse: true })
-  email?: string;
+  @Prop({ default: '' })
+  email: string;
 
   @Prop({ required: true })
   password: string;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true })
   username: string;
 
   @Prop({ required: true, default: [Role.USER] })
@@ -38,16 +38,18 @@ export class User {
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-// Add index for case-insensitive email and username search
+// Add compound index for email that only applies uniqueness when email is not empty
 UserSchema.index(
   { email: 1 },
   {
     unique: true,
     sparse: true,
+    partialFilterExpression: { email: { $ne: '' } },
     collation: { locale: 'en', strength: 2 },
   },
 );
 
+// Keep username as primary key with unique index
 UserSchema.index(
   { username: 1 },
   {
