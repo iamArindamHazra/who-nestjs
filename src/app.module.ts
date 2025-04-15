@@ -2,13 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ThrottlerModule, ThrottlerModuleOptions } from '@nestjs/throttler';
-import configuration from './config/configuration';
-import { UsersModule } from './modules/users/users.module';
-import { MessagesModule } from './modules/messages/messages.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { CommonModule } from './common/common.module';
+import configuration from 'src/config/configuration';
+import { UsersModule } from 'src/modules/users/users.module';
+import { MessagesModule } from 'src/modules/messages/messages.module';
+import { AuthModule } from 'src/modules/auth/auth.module';
+import { AppController } from 'src/app.controller';
+import { AppService } from 'src/app.service';
+import { CommonModule } from 'src/common/common.module';
 
 @Module({
   imports: [

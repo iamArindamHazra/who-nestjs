@@ -18,12 +18,12 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { ThrottlerGuard } from '@nestjs/throttler';
-import { MessagesDocs } from '../../docs/messages.docs';
-import { Role } from '../auth/enums/roles.enum';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CreateMessageDto } from './dto/create-message.dto';
-import { MessagesService } from './messages.service';
-import { Message } from './schemas/message.schema';
+import { MessagesDocs } from 'src/docs/messages.docs';
+import { Role } from 'src/modules/auth/enums/roles.enum';
+import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
+import { CreateMessageDto } from 'src/modules/messages/dto/create-message.dto';
+import { MessagesService } from 'src/modules/messages/messages.service';
+import { Message } from 'src/modules/messages/schemas/message.schema';
 
 @ApiTags('Messages')
 @Controller('message')

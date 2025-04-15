@@ -5,14 +5,14 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PaginationResponseDto } from '../../common/dto/pagination-response.dto';
-import { PaginationDto } from '../../common/dto/pagination.dto';
-import { PaginationService } from '../../common/services/pagination.service';
-import { CreateUserDto } from '../auth/dto/create-user.dto';
-import { Role } from '../auth/enums/roles.enum';
-import { GetUserDto } from './dto/get-user.dto';
-import { UserStatsDto } from './dto/user-stats.dto';
-import { User, UserDocument } from './schemas/user.schema';
+import { PaginationResponseDto } from 'src/common/dto/pagination-response.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { PaginationService } from 'src/common/services/pagination.service';
+import { CreateUserDto } from 'src/modules/auth/dto/create-user.dto';
+import { Role } from 'src/modules/auth/enums/roles.enum';
+import { GetUserDto } from 'src/modules/users/dto/get-user.dto';
+import { UserStatsDto } from 'src/modules/users/dto/user-stats.dto';
+import { User, UserDocument } from 'src/modules/users/schemas/user.schema';
 
 @Injectable()
 export class UsersService {

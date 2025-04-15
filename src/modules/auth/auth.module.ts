@@ -3,11 +3,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
-import { UsersModule } from '../users/users.module';
-import { JwtStrategy } from './strategies/jwt.strategy';
-import { LocalStrategy } from './strategies/local.strategy';
+import { AuthService } from 'src/modules/auth/auth.service';
+import { AuthController } from 'src/modules/auth/auth.controller';
+import { UsersModule } from 'src/modules/users/users.module';
+import { JwtStrategy } from 'src/modules/auth/strategies/jwt.strategy';
+import { LocalStrategy } from 'src/modules/auth/strategies/local.strategy';
 import {
   RefreshToken,
   RefreshTokenSchema,

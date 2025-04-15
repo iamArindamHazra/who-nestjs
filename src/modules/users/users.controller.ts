@@ -16,16 +16,16 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { PaginationDto } from '../../common/dto/pagination.dto';
-import { UsersDocs } from '../../docs/users.docs';
-import { PaginationDocs } from '../../docs/pagination.docs';
-import { Roles } from '../auth/decorators/roles.decorator';
-import { Role } from '../auth/enums/roles.enum';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../auth/guards/roles.guard';
-import { UserStatsDto } from './dto/user-stats.dto';
-import { User } from './schemas/user.schema';
-import { UsersService } from './users.service';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { UsersDocs } from 'src/docs/users.docs';
+import { PaginationDocs } from 'src/docs/pagination.docs';
+import { Roles } from 'src/modules/auth/decorators/roles.decorator';
+import { Role } from 'src/modules/auth/enums/roles.enum';
+import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/modules/auth/guards/roles.guard';
+import { UserStatsDto } from 'src/modules/users/dto/user-stats.dto';
+import { User } from 'src/modules/users/schemas/user.schema';
+import { UsersService } from 'src/modules/users/users.service';
 
 @ApiTags('Users')
 @Controller('user')

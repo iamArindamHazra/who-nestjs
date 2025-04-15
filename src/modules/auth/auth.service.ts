@@ -5,15 +5,15 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import * as ms from 'ms';
 import { ConfigService } from '@nestjs/config';
-import { UsersService } from '../users/users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { LoginDto } from './dto/login.dto';
-import { UpdateEmailDto } from './dto/update-email.dto';
+import { UsersService } from 'src/modules/users/users.service';
+import { CreateUserDto } from 'src/modules/auth/dto/create-user.dto';
+import { LoginDto } from 'src/modules/auth/dto/login.dto';
+import { UpdateEmailDto } from 'src/modules/auth/dto/update-email.dto';
 import {
   RefreshToken,
   RefreshTokenDocument,
 } from './schemas/refresh-token.schema';
-import { AuthTokensResponse } from './dto/auth-tokens.response';
+import { AuthTokensResponse } from 'src/modules/auth/dto/auth-tokens.response';
 
 @Injectable()
 export class AuthService {

@@ -7,14 +7,14 @@ import {
   Patch,
   Request,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './guards/local-auth.guard';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { CreateUserDto } from './dto/create-user.dto';
-import { LoginDto } from './dto/login.dto';
-import { UpdateEmailDto } from './dto/update-email.dto';
-import { RefreshTokenDto } from './dto/refresh-token.dto';
-import { AuthTokensResponse } from './dto/auth-tokens.response';
+import { AuthService } from 'src/modules/auth/auth.service';
+import { LocalAuthGuard } from 'src/modules/auth/guards/local-auth.guard';
+import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
+import { CreateUserDto } from 'src/modules/auth/dto/create-user.dto';
+import { LoginDto } from 'src/modules/auth/dto/login.dto';
+import { UpdateEmailDto } from 'src/modules/auth/dto/update-email.dto';
+import { RefreshTokenDto } from 'src/modules/auth/dto/refresh-token.dto';
+import { AuthTokensResponse } from 'src/modules/auth/dto/auth-tokens.response';
 import {
   ApiTags,
   ApiOperation,
@@ -22,7 +22,7 @@ import {
   ApiBody,
   ApiBearerAuth,
 } from '@nestjs/swagger';
-import { AuthDocs } from '../../docs/auth.docs';
+import { AuthDocs } from 'src/docs/auth.docs';
 
 @ApiTags('Auth')
 @Controller('auth')

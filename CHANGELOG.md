@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.5] - 2025-04-12
+
+### Changed
+
+- Updated all import paths to use absolute imports from 'src/' for better maintainability
+- Updated dependencies:
+  - Updated mime-types to version 3.0.1
+  - Updated mime to version 2.6.0
+  - Updated swagger-ui-dist to version 5.21.0
+  - Updated ts-jest to version 29.3.2
+  - Updated various other dependencies to their latest compatible versions
+- Enhanced module organization with consistent import paths
+- Improved code maintainability with standardized import structure
+
 ## [0.0.4] - 2025-04-12
 
 ### Changed

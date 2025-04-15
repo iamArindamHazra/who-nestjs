@@ -5,10 +5,13 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Message, MessageDocument } from './schemas/message.schema';
-import { CreateMessageDto } from './dto/create-message.dto';
-import { UsersService } from '../users/users.service';
-import { Role } from '../auth/enums/roles.enum';
+import {
+  Message,
+  MessageDocument,
+} from 'src/modules/messages/schemas/message.schema';
+import { CreateMessageDto } from 'src/modules/messages/dto/create-message.dto';
+import { UsersService } from 'src/modules/users/users.service';
+import { Role } from 'src/modules/auth/enums/roles.enum';
 
 @Injectable()
 export class MessagesService {
