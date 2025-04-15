@@ -6,6 +6,7 @@ import {
   MaxLength,
   IsOptional,
   Matches,
+  ValidateIf,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
@@ -15,6 +16,7 @@ export class CreateUserDto {
     example: 'user@example.com',
   })
   @IsOptional()
+  @ValidateIf((o) => o.email !== '')
   @IsEmail()
   email?: string;
 
